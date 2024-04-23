@@ -1,0 +1,63 @@
+Create database notasdbpostgres
+
+CREATE TABLE estudiantes (
+ est_id int PRIMARY KEY,
+ est_nom varchar(30) NOT NULL,
+ est_app varchar(30) NOT NULL,
+ est_apm varchar(30),
+ est_dt DATE,
+ carrera varchar(30)
+);
+
+CREATE TABLE materias (
+ mat_id int PRIMARY KEY,
+ mat_nom varchar(30) NOT NULL,
+ mat_cdt int
+);
+
+ 
+CREATE TABLE notas
+(
+ notas_id int PRIMARY KEY,
+ estudiante_id INT NOT NULL,
+ materia_id INT NOT NULL,
+ valor_nota DECIMAL(3,1) NOT NULL,
+ FOREIGN KEY (estudiante_id) REFERENCES estudiantes(est_id),
+ FOREIGN KEY (materia_id) REFERENCES materias(mat_id)
+);
+
+
+-- #################################################################################################################
+
+
+-- Insert materias
+INSERT INTO materias (mat_id,mat_nom, mat_cdt)
+VALUES ('1','Cálculo I', 4);
+
+INSERT INTO materias (mat_id,mat_nom, mat_cdt)
+VALUES ('2','Lenguaje de Programación I', 3);
+
+INSERT INTO materias (mat_id,mat_nom, mat_cdt)
+VALUES ('3','Base de Datos I', 3);
+
+
+-- Insert estudiantes
+INSERT INTO estudiantes (est_id,est_nom, est_app, est_apm, est_dt, carrera)
+VALUES ('1','Juan', 'Perez', 'Rodriguez', '1990-01-01', 'Ingeniería en Sistemas');
+
+INSERT INTO estudiantes (est_id,est_nom, est_app, est_apm, est_dt, carrera)
+VALUES ('2','Maria', 'Lopez', 'Diaz', '1995-07-15', 'Administración de Empresas');
+
+INSERT INTO estudiantes (est_id,est_nom, est_app, est_apm, est_dt, carrera)
+VALUES ('3','Pedro', 'Gonzalez', NULL, '2000-12-31', 'Derecho');
+
+
+-- Insert notas
+INSERT INTO notas (notas_id, estudiante_id, materia_id, valor_nota)
+VALUES (1, 1, 1, 85.5);
+
+INSERT INTO notas (notas_id, estudiante_id, materia_id, valor_nota)
+VALUES (2, 2, 2, 90.0);
+
+INSERT INTO notas (notas_id, estudiante_id, materia_id, valor_nota)
+VALUES (3, 3, 1, 78.2);
